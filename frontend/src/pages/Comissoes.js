@@ -8,15 +8,36 @@ import './Comissoes.css'; // Import the new CSS file
  * @property {string} sigla
  * @property {string} comissao
  * @property {string[]} presidente
- * @property {string[]} vice_presidente
  * @property {string[][]} membro
  */
+
+// Custom hook to detect screen orientation
+const useScreenOrientation = () => {
+  const [isPortrait, setIsPortrait] = useState(
+    window.matchMedia('(orientation: portrait)').matches
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(orientation: portrait)');
+    const handleOrientationChange = (e) => setIsPortrait(e.matches);
+
+    mediaQuery.addEventListener('change', handleOrientationChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleOrientationChange);
+    };
+  }, []);
+
+  return isPortrait;
+};
+
 
 function Comissoes() {
   const [currentCard, setCurrentCard] = useState(0);
   const [touchStartX, setTouchStartX] = useState(null);
   const [touchEndX, setTouchEndX] = useState(null);
   const [swipeProgress, setSwipeProgress] = useState(0);
+  const isPortrait = useScreenOrientation(); // Use the orientation hook
 
   /** @type {Card[]} */
   const cards = Array.from({ length: 21 }, (_, i) => {
@@ -172,7 +193,9 @@ function Comissoes() {
             }}
           >
             <div className="card-inner-content">
-              <span className='comissao-name'>{currentCardData.comissao}</span>
+              <span className='comissao-name'>
+                {isPortrait ? currentCardData.sigla : currentCardData.comissao}
+              </span>
               <table>
                 <thead>
                   <tr>

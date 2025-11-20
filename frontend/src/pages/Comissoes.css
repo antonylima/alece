@@ -1,37 +1,45 @@
+@keyframes breathing-glow {
+  0% {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(52, 211, 153, 0.2);
+  }
+  50% {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 25px rgba(52, 211, 153, 0.4);
+  }
+  100% {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(52, 211, 153, 0.2);
+  }
+}
+
 /* General Container */
 .comissoes-container {
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #1e293b, #2c3e50, #1e293b);
-  color: white;
+  background: linear-gradient(to bottom right, #062018, #10402E, #062018); /* Green Gradient */
+  color: #e2e8f0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4px;
-  font-family: sans-serif;
-}
-
-.comissoes-header {
-  width: 100%;
-  max-width: 56rem; /* max-w-4xl */
-  margin-bottom: 3rem; /* mb-12 */
+  padding: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow: hidden;
 }
 
 .comissoes-header h2 {
-  font-size: 1.875rem; /* text-3xl */
-  font-weight: 700; /* font-bold */
+  font-size: 2.25rem;
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 3rem; /* mb-12 */
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Card Area */
 .card-display-area {
   position: relative;
   width: 100%;
-  max-width: 42rem; /* max-w-2xl */
-  height: 24rem; /* h-96 */
-  margin-bottom: 3rem; /* mb-12 */
-  overflow: hidden; /* Hide overflow for swipe effect */
+  max-width: 42rem;
+  /* height: 26rem; REMOVED for auto height */
+  margin-bottom: 2rem;
+  perspective: 1000px;
 }
 
 .card-swiper {
@@ -44,19 +52,18 @@
 
 .card {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
-  color: #333;
-  border-radius: 1rem; /* rounded-2xl */
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
-  padding: 4px;
+  min-height: 26rem; /* Use min-height instead of height */
+  height: auto; /* Allow card to grow */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #1e293b;
+  border-radius: 1.5rem;
+  padding: 0.5rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   transition: transform 0.3s ease-out;
   cursor: grab;
+  animation: breathing-glow 5s ease-in-out infinite;
 }
 
 .card:active {
@@ -64,22 +71,28 @@
 }
 
 .card-inner-content {
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(4px);
-  border-radius: 0.75rem; /* rounded-xl */
-  padding: 4px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
   width: 100%;
-  height: 100%;
+  height: 100%; /* Take full height of parent */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+  justify-content: flex-start;
+  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.7);
+  /* overflow-y: auto; REMOVED to prevent scroll */
 }
 
 .card-inner-content .comissao-name {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 800;
   margin-bottom: 1rem;
+  text-align: center;
+  background: linear-gradient(45deg, #059669, #064e3b); /* Green Gradient Text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
 .card-inner-content table {
@@ -90,52 +103,79 @@
 
 .card-inner-content th,
 .card-inner-content td {
-  border: 1px solid #e5e7eb;
-  padding: 0.5rem;
+  border: none;
+  padding: 0.6rem 0.5rem;
+  text-align: left;
+}
+
+.card-inner-content tr {
+  transition: background-color 0.2s ease-in-out;
+}
+
+.card-inner-content tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.card-inner-content tr:not(:last-child) {
+  border-bottom: 1px solid #dde2e7;
 }
 
 .card-inner-content th.ts {
   font-weight: 600;
+  color: #475569;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding-bottom: 0.5rem;
 }
 
 .card-inner-content .tipo {
-  font-weight: 600;
-  background-color: #f3f4f6;
+  font-weight: 700;
+  background-color: transparent;
+  color: #065f46; /* Darker Green */
+  text-align: center;
+  font-size: 1rem;
+  padding: 1.25rem 0 0.5rem 0;
 }
 
 .branco {
   color: transparent;
+  user-select: none;
 }
 
 /* Navigation */
 .nav-controls {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* space-x-6 */
-  margin-bottom: 1.5rem; /* mb-6 */
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .nav-button {
   display: flex;
   align-items: center;
-  padding: 4px 1.5rem;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
-  border-radius: 0.75rem; /* rounded-xl */
+  border-radius: 50%;
   transition: all 0.2s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(4px);
 }
 
 .nav-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(16, 185, 129, 0.3); /* Green tint on hover */
+  transform: scale(1.1);
 }
 
 .card-counter {
   color: white;
   font-family: monospace;
-  font-size: 1.25rem; /* text-xl */
+  font-size: 1.5rem;
+  font-weight: 500;
+  min-width: 40px;
+  text-align: center;
 }
 
 /* Dots Indicator */
@@ -143,23 +183,36 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem; /* gap-2 */
-  max-width: 56rem; /* max-w-4xl */
+  gap: 0.6rem;
+  max-width: 56rem;
 }
 
 .dot {
-  width: 0.75rem; /* w-3 */
-  height: 0.75rem; /* h-3 */
-  border-radius: 9999px; /* rounded-full */
-  transition: all 0.2s ease-in-out;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
   background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .dot:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .dot.active {
-  background-color: #818cf8; /* bg-indigo-400 */
-  transform: scale(1.25);
+  background-color: #34d399; /* Emerald Green */
+  transform: scale(1.4);
+  box-shadow: 0 0 10px #34d399, 0 0 20px #34d399;
+}
+
+/* Landscape Mode Adjustment */
+@media (orientation: landscape) {
+  .card-inner-content .comissao-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
