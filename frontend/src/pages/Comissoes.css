@@ -1,0 +1,165 @@
+/* General Container */
+.comissoes-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #1e293b, #2c3e50, #1e293b);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  font-family: sans-serif;
+}
+
+.comissoes-header {
+  width: 100%;
+  max-width: 56rem; /* max-w-4xl */
+  margin-bottom: 3rem; /* mb-12 */
+}
+
+.comissoes-header h2 {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  text-align: center;
+  margin-bottom: 3rem; /* mb-12 */
+}
+
+/* Card Area */
+.card-display-area {
+  position: relative;
+  width: 100%;
+  max-width: 42rem; /* max-w-2xl */
+  height: 24rem; /* h-96 */
+  margin-bottom: 3rem; /* mb-12 */
+  overflow: hidden; /* Hide overflow for swipe effect */
+}
+
+.card-swiper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+  color: #333;
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease-out;
+  cursor: grab;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card-inner-content {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 4px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+}
+
+.card-inner-content .comissao-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.card-inner-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.card-inner-content th,
+.card-inner-content td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+}
+
+.card-inner-content th.ts {
+  font-weight: 600;
+}
+
+.card-inner-content .tipo {
+  font-weight: 600;
+  background-color: #f3f4f6;
+}
+
+.branco {
+  color: transparent;
+}
+
+/* Navigation */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* space-x-6 */
+  margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  padding: 4px 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 0.75rem; /* rounded-xl */
+  transition: all 0.2s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.card-counter {
+  color: white;
+  font-family: monospace;
+  font-size: 1.25rem; /* text-xl */
+}
+
+/* Dots Indicator */
+.dots-indicator {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem; /* gap-2 */
+  max-width: 56rem; /* max-w-4xl */
+}
+
+.dot {
+  width: 0.75rem; /* w-3 */
+  height: 0.75rem; /* h-3 */
+  border-radius: 9999px; /* rounded-full */
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dot.active {
+  background-color: #818cf8; /* bg-indigo-400 */
+  transform: scale(1.25);
+}
