@@ -97,7 +97,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
-  color: #1f2937;
+  color: #af2b2b;
 }
 
 .card-table thead {
@@ -301,80 +301,287 @@ body {
   }
 }
 
-/* === LANDSCAPE MODE === */
-@media (orientation: landscape) and (max-height: 600px) {
+/* === LANDSCAPE MODE - VIEWPORT COMPLETO === */
+
+/* Landscape - Small devices (altura < 500px) */
+@media (orientation: landscape) and (max-height: 500px) {
   body {
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.5rem;
+    overflow: hidden;
   }
 
   #root {
-    gap: 0.5rem;
+    gap: 0.25rem;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
   }
 
   .page-header {
     margin-top: 0;
+    padding: 0.15rem 0;
   }
 
   .page-header h1 {
-    font-size: 1.2rem;
+    font-size: 0.85rem;
+    letter-spacing: -0.3px;
   }
 
   .card-container {
     min-height: auto;
+    max-height: calc(100vh - 70px);
     flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .card-wrapper {
+    height: 100%;
+    max-height: 100%;
   }
 
   .card {
-    max-height: calc(100vh - 150px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    max-width: 98vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.6rem;
+    overflow: hidden;
   }
 
   .card-header {
-    padding: 0.75rem 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    padding: 0.3rem 0.75rem;
+    flex-shrink: 0;
+    border-bottom: 2px solid #22d3ee;
   }
 
   .card-title {
-    font-size: 1.2rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
+  }
+
+  /* Tabela sem scroll - ajuste automático */
+  .card-table {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .card-table thead,
+  .card-table tbody {
+    display: block;
+  }
+
+  .card-table thead {
+    flex-shrink: 0;
+  }
+
+  .card-table tbody {
+    display: block;
+    height: calc(100vh - 135px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .card-table tbody::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
   }
 
   .col-label,
   .card-table td {
-    padding: 0.6rem 0.75rem;
-    font-size: 0.8rem;
+    padding: 0.3rem 0.4rem;
+    font-size: 0.65rem;
+    line-height: 1.2;
+  }
+
+  .col-label {
+    font-size: 0.6rem;
+    padding: 0.25rem 0.4rem;
   }
 
   .section-title {
-    padding: 0.8rem 0.75rem !important;
-    font-size: 0.75rem;
+    padding: 0.4rem 0.4rem !important;
+    font-size: 0.6rem;
+    background: linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%) !important;
   }
 
+  /* Paginação fixa e compacta */
   .pagination {
-    gap: 0.4rem;
-    padding: 0.5rem;
+    gap: 0.3rem;
+    padding: 0.3rem 0.4rem;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(15, 23, 42, 0.9);
-    border-top: 1px solid #22d3ee;
-    max-height: 50px;
-    overflow-y: hidden;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.95));
+    backdrop-filter: blur(8px);
+    border-top: 2px solid #22d3ee;
+    max-height: 32px;
+    overflow: hidden;
     z-index: 20;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
   }
 
   .dot {
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
   }
 
   .dot.active {
+    transform: scale(1.5);
+  }
+
+  .dot:hover {
     transform: scale(1.3);
+  }
+}
+
+/* Landscape - Medium devices (500px < altura < 700px) */
+@media (orientation: landscape) and (min-height: 501px) and (max-height: 700px) {
+  body {
+    padding: 0.4rem 0.75rem;
+    overflow: hidden;
+  }
+
+  #root {
+    gap: 0.4rem;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+
+  .page-header {
+    margin-top: 0;
+    padding: 0.3rem 0;
+  }
+
+  .page-header h1 {
+    font-size: 1.1rem;
+  }
+
+  .card-container {
+    min-height: auto;
+    max-height: calc(100vh - 100px);
+    padding: 0.4rem 0.75rem;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .card-wrapper {
+    height: 100%;
+  }
+
+  .card {
+    max-width: 96vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.8rem;
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 0.5rem 1rem;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-table {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .card-table thead,
+  .card-table tbody {
+    display: block;
+  }
+
+  .card-table tbody {
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .card-table tbody::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .col-label,
+  .card-table td {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .section-title {
+    padding: 0.65rem 0.7rem !important;
+    font-size: 0.7rem;
+  }
+
+  .pagination {
+    gap: 0.4rem;
+    padding: 0.4rem 0.5rem;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.95));
+    backdrop-filter: blur(8px);
+    border-top: 2px solid #22d3ee;
+    max-height: 38px;
+    z-index: 20;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+  }
+
+  .dot.active {
+    transform: scale(1.5);
+  }
+}
+
+/* Landscape - Large devices (altura > 700px) */
+@media (orientation: landscape) and (min-height: 701px) {
+  body {
+    overflow: hidden;
+  }
+
+  #root {
+    overflow: hidden;
+  }
+
+  .card-table tbody {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .card-table tbody::-webkit-scrollbar {
+    display: none;
   }
 }
 

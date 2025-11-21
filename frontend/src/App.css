@@ -39,8 +39,6 @@ body {
 /* Main Content Area */
 main {
   max-width: 900px;
-  margin: 2rem auto;
-  padding: 2rem;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -48,11 +46,13 @@ main {
 
 /* Deputados List Styles */
 .deputados-container .list-title {
-  font-size: 2rem;
-  color: #1d2129;
+  font-size: 1.5rem;
+  color: #222121;
   border-bottom: 2px solid #e7e7e7;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
   margin-bottom: 1.5rem;
+  text-align: center;
+  background-color: rgb(2, 146, 33);
 }
 
 .deputados-list {
@@ -131,4 +131,9 @@ a:hover{
 a{
   color: black;
   text-decoration: none;
+}
+
+
+.branco{
+  visibility: hidden;
 }

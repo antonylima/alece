@@ -45,7 +45,7 @@ function DeputadosList() {
 
   return (
     <div className="deputados-container">
-      <h2 className="list-title">Lista de Deputados</h2>
+      <h2 className="list-title">Deputados</h2>
       <ul className="deputados-list">
         {todos.map((todo) => (
           <li

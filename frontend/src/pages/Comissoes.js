@@ -173,11 +173,6 @@ function Comissoes() {
 
   return (
     <>
-      <header className="page-header">
-        <h1>Comissões Técnicas</h1>
-      </header>
-
-      <main className="card-container">
         <div
           className="card-wrapper"
           onTouchStart={handleTouchStart}
@@ -226,7 +221,7 @@ function Comissoes() {
             </table>
           </div>
         </div>
-      </main>
+      
 
       <nav className="pagination">
         {cards.map((_, index) => (
