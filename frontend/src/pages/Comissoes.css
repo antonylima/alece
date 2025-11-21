@@ -1,255 +1,401 @@
-@keyframes breathing-glow {
-  0% {
-    box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(52, 211, 153, 0.2);
-  }
-  50% {
-    box-shadow: 0 10px 50px -12px rgba(0, 0, 0, 0.6), 0 0 25px rgba(52, 211, 153, 0.4);
-  }
-  100% {
-    box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(52, 211, 153, 0.2);
-  }
+/* === MODERN COMISSÕES PAGE STYLES === */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* General Container */
-.comissoes-container {
+/* === PAGE STRUCTURE === */
+body {
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #062018, #10402E, #062018);
-  color: #e2e8f0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  padding: 1.5rem 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  overflow: hidden;
+  gap: 2rem;
 }
 
-.comissoes-header h2 {
-  font-size: 1.8rem; /* Mobile first font size */
-  font-weight: 700;
+.page-header {
   text-align: center;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  color: #e2e8f0;
+  margin-top: 1rem;
 }
 
-/* Card Area */
-.card-display-area {
-  position: relative;
-  width: 95%; /* More flexible width */
-  max-width: 42rem;
-  margin-bottom: 1.5rem;
-  perspective: 1000px;
+.page-header h1 {
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin: 0;
 }
 
-.card-swiper {
-  position: absolute;
-  inset: 0;
+/* === CARD CONTAINER === */
+.card-container {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 50vh;
+  padding: 1rem 0;
 }
 
+.card-wrapper {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === CARD DESIGN === */
 .card {
   width: 100%;
-  min-height: 24rem; /* Adjusted min-height for mobile */
-  height: auto;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #1e293b;
-  border-radius: 1.5rem;
-  padding: 0.5rem;
-  display: flex;
-  transition: transform 0.3s ease-out;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 1.2rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 0.3s ease;
+  will-change: transform;
   cursor: grab;
-  animation: breathing-glow 5s ease-in-out infinite;
 }
 
 .card:active {
   cursor: grabbing;
 }
 
-.card-inner-content {
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque for readability */
-  border-radius: 1.25rem;
-  padding: 1rem; /* Reduced padding for mobile */
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.7);
+.card:hover {
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
 }
 
-.card-inner-content .comissao-name {
-  font-size: 1.2rem; /* Mobile first font size */
-  font-weight: 800;
-  margin-bottom: 1rem;
-  text-align: center;
-  background: linear-gradient(45deg, #059669, #064e3b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
+/* === CARD HEADER === */
+.card-header {
+  background: linear-gradient(135deg, #0f5132 0%, #1b7d5a 100%);
+  padding: 1rem 1.5rem;
+  border-bottom: 3px solid #22d3ee;
 }
 
-.card-inner-content table {
+.card-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+/* === TABLE STYLES (core structure unchanged) === */
+.card-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8rem; /* Mobile first font size */
+  font-size: 0.95rem;
+  color: #1f2937;
 }
 
-.card-inner-content th,
-.card-inner-content td {
-  border: none;
-  padding: 0.5rem 0.4rem; /* Reduced padding */
-  text-align: left;
+.card-table thead {
+  background: #f0f9ff;
+  border-bottom: 2px solid #cbd5e1;
 }
 
-.card-inner-content tr {
-  transition: background-color 0.2s ease-in-out;
-}
-
-.card-inner-content tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.03);
-}
-
-.card-inner-content tr:not(:last-child) {
-  border-bottom: 1px solid #dde2e7;
-}
-
-.card-inner-content th.ts {
+.col-label {
+  padding: 1rem 1.25rem;
+  text-align: center;
   font-weight: 600;
-  color: #475569;
-  font-size: 0.7rem;
+  color: #0f5132;
   text-transform: uppercase;
-  padding-bottom: 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
 }
 
-.card-inner-content .tipo {
+.card-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.15s ease;
+}
+
+.card-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.card-table td {
+  padding: 1rem 1.25rem;
+  text-align: center;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Section title rows (Presidente, Vice-Presidente, Membros) */
+.section-title {
+  background: linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%) !important;
   font-weight: 700;
-  color: #065f46;
-  text-align: center;
+  color: #0f5132 !important;
   font-size: 0.9rem;
-  padding: 1rem 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 1.2rem 1.25rem !important;
+  border-bottom: 2px solid #cbd5e1 !important;
 }
 
-.branco {
-  color: transparent;
-  user-select: none;
+.card-table tbody tr:hover.section-title {
+  background: linear-gradient(90deg, #cce5f8 0%, #e0f2fe 100%) !important;
 }
 
-/* Navigation */
-.nav-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem; /* Reduced gap */
-  margin-bottom: 1rem;
-}
-
-.nav-button {
-  width: 45px;
-  height: 45px;
-  /* ... other styles ... */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-radius: 50%;
-  transition: all 0.2s ease-in-out;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
-}
-
-.nav-button:hover {
-  background-color: rgba(16, 185, 129, 0.3);
-  transform: scale(1.1);
-}
-
-.card-counter {
-  font-size: 1.3rem;
-  /* ... other styles ... */
-  color: white;
-  font-family: monospace;
-  font-weight: 500;
-  min-width: 40px;
-  text-align: center;
-}
-
-/* Dots Indicator */
-.dots-indicator {
+/* === PAGINATION === */
+.pagination {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem;
-  max-width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
+  gap: 0.75rem;
+  padding: 1rem;
+  max-width: 900px;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
-  /* ... other styles ... */
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.3);
   border: none;
-  padding: 0;
+  background-color: rgba(255, 255, 255, 0.3);
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+  padding: 0;
 }
 
 .dot:hover {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.2);
 }
 
 .dot.active {
-  background-color: #34d399;
+  background-color: #22d3ee;
   transform: scale(1.4);
-  box-shadow: 0 0 10px #34d399, 0 0 20px #34d399;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.6);
 }
 
-/* Landscape Mode Adjustment */
-@media (orientation: landscape) {
-  .card-inner-content .comissao-name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* === RESPONSIVE DESIGN === */
+
+/* Mobile (< 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem 0.75rem;
+  }
+
+  #root {
+    gap: 1rem;
+  }
+
+  .page-header {
+    margin-top: 0.5rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+  }
+
+  .card-container {
+    padding: 0.5rem 0;
+  }
+
+  .card {
+    max-width: 90vw;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .col-label {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .card-table td {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .section-title {
+    padding: 1rem 0.75rem !important;
+    font-size: 0.8rem;
+  }
+
+  .pagination {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
   }
 }
 
-/* Tablet and up */
+/* Tablet (>= 768px) */
 @media (min-width: 768px) {
-  .comissoes-header h2 {
-    font-size: 2.25rem;
-    margin-bottom: 2rem;
+  body {
+    padding: 2rem 1.5rem;
   }
-  .card-display-area {
-    margin-bottom: 2rem;
+
+  #root {
+    gap: 2.5rem;
   }
-  .card-inner-content {
-    padding: 1.5rem;
+
+  .page-header h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
   }
-  .card-inner-content .comissao-name {
-    font-size: 1.5rem;
+
+  .card-container {
+    min-height: 60vh;
   }
-  .card-inner-content table {
-    font-size: 0.875rem;
+
+  .col-label {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.85rem;
   }
-  .nav-controls {
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+
+  .card-table td {
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem;
   }
-  .nav-button {
-    width: 50px;
-    height: 50px;
+
+  .dot {
+    width: 14px;
+    height: 14px;
   }
-  .card-counter {
-    font-size: 1.5rem;
+}
+
+/* Desktop (>= 1024px) */
+@media (min-width: 1024px) {
+  body {
+    padding: 2.5rem 2rem;
   }
+
+  .card {
+    max-width: 900px;
+  }
+
+  .card-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .col-label {
+    padding: 1.5rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .card-table td {
+    padding: 1.5rem 2rem;
+    font-size: 1.05rem;
+  }
+
+  .section-title {
+    padding: 1.5rem 2rem !important;
+    font-size: 1rem;
+  }
+}
+
+/* === LANDSCAPE MODE === */
+@media (orientation: landscape) and (max-height: 600px) {
+  body {
+    padding: 0.5rem 1rem;
+  }
+
+  #root {
+    gap: 0.5rem;
+  }
+
+  .page-header {
+    margin-top: 0;
+  }
+
+  .page-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .card-container {
+    min-height: auto;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .card {
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .card-header {
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .col-label,
+  .card-table td {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .section-title {
+    padding: 0.8rem 0.75rem !important;
+    font-size: 0.75rem;
+  }
+
+  .pagination {
+    gap: 0.4rem;
+    padding: 0.5rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.9);
+    border-top: 1px solid #22d3ee;
+    max-height: 50px;
+    overflow-y: hidden;
+    z-index: 20;
+  }
+
   .dot {
     width: 10px;
     height: 10px;
   }
+
+  .dot.active {
+    transform: scale(1.3);
+  }
+}
+
+/* === ACCESSIBILITY === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.dot:focus,
+.card:focus {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+/* Utility class for hidden elements */
+.branco {
+  color: transparent;
+  user-select: none;
 }

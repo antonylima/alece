@@ -52,9 +52,9 @@ function Comissoes() {
     const comissoes = [
       'Agropecuária', 'Ciência, Tecnologia e Educação Superior', 'Constituição, Justiça e Redação',
       'Cultura e Esportes', 'Defesa do Consumidor', 'Defesa e Direitos da Mulher', 'Defesa Social',
-      'Desenvolvimento Regional, Recursos Hídricos, Minas e Pesca', 'Direitos Humanos e Cidadania',
+      'Desenv. Regional, Recursos Hídricos, Minas e Pesca', 'Direitos Humanos e Cidadania',
       'Educação Básica', 'Fiscalização e Controle', 'Indústria, Desenvolvimento Econômico e Comércio',
-      'Infância e Adolescência', 'Juventude', 'Meio Ambiente, Mudanças Climáticas e Desenvolvimento do Semiárido',
+      'Infância e Adolescência', 'Juventude', 'Meio Ambiente, Mudanças Clim. e Desenv. do Semiárido',
       'Orçamento, Finanças e Tributação', 'Previdência Social e Saúde', 'Proteção Social e Combate à Fome',
       'Trabalho, Administração e Serviço Público', 'Turismo e Serviços', 'Viação, Transporte, Desenvolvimento Urbano'
     ];
@@ -172,14 +172,14 @@ function Comissoes() {
   const currentCardData = cards[currentCard];
 
   return (
-    <div className="comissoes-container">
-      <div className="comissoes-header">
-        <h2>Comissões Técnicas</h2>
-      </div>
+    <>
+      <header className="page-header">
+        <h1>Comissões Técnicas</h1>
+      </header>
 
-      <div className="card-display-area">
+      <main className="card-container">
         <div
-          className="card-swiper"
+          className="card-wrapper"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -192,58 +192,53 @@ function Comissoes() {
               transition: swipeProgress === 0 ? 'transform 0.3s ease-out' : 'none' 
             }}
           >
-            <div className="card-inner-content">
-              <span className='comissao-name'>
+            <div className="card-header">
+              <h2 className="card-title">
                 {isPortrait ? currentCardData.sigla : currentCardData.comissao}
-              </span>
-              <table>
-                <thead>
-                  <tr>
-                    <th className='ts'>Titular</th>
-                    <th className='ts'>Suplente</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td colSpan={2} className='tipo'>Presidente</td></tr>
-                  <tr>
-                    <td>{(currentCardData.presidente && currentCardData.presidente[0])?.substring(0, currentCardData.presidente[0].indexOf(',')) || ''}</td>
-                    <td>{(currentCardData.presidente && currentCardData.presidente[1])?.substring(0, currentCardData.presidente[1].indexOf(',')) || ''}</td>
-                  </tr>
-                  <tr><td colSpan={2} className='tipo'>Vice-Presidente</td></tr>
-                  <tr>
-                    <td>{(currentCardData.vice_presidente && currentCardData.vice_presidente[0])?.substring(0, currentCardData.vice_presidente[0].indexOf(',')) || ''}</td>
-                    <td>{(currentCardData.vice_presidente && currentCardData.vice_presidente[1])?.substring(0, currentCardData.vice_presidente[1].indexOf(',')) || ''}</td>
-                  </tr>
-                  <tr><td colSpan={2} className='tipo'>Membros</td></tr>
-                  {currentCardData.membro.map((m, index) => (
-                    <tr key={index}>
-                      <td>{(m && m[0])?.substring(0, m[0].indexOf(',')) || ''}</td>
-                      <td>{(m && m[1])?.substring(0, m[1].indexOf(',')) || ''}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              </h2>
             </div>
+            <table className="card-table">
+              <thead>
+                <tr>
+                  <th className='col-label'>Titular</th>
+                  <th className='col-label'>Suplente</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colSpan={2} className='section-title'>Presidente</td></tr>
+                <tr>
+                  <td>{(currentCardData.presidente && currentCardData.presidente[0])?.substring(0, currentCardData.presidente[0].indexOf(',')) || ''}</td>
+                  <td>{(currentCardData.presidente && currentCardData.presidente[1])?.substring(0, currentCardData.presidente[1].indexOf(',')) || ''}</td>
+                </tr>
+                <tr><td colSpan={2} className='section-title'>Vice-Presidente</td></tr>
+                <tr>
+                  <td>{(currentCardData.vice_presidente && currentCardData.vice_presidente[0])?.substring(0, currentCardData.vice_presidente[0].indexOf(',')) || ''}</td>
+                  <td>{(currentCardData.vice_presidente && currentCardData.vice_presidente[1])?.substring(0, currentCardData.vice_presidente[1].indexOf(',')) || ''}</td>
+                </tr>
+                <tr><td colSpan={2} className='section-title'>Membros</td></tr>
+                {currentCardData.membro.map((m, index) => (
+                  <tr key={index}>
+                    <td>{(m && m[0])?.substring(0, m[0].indexOf(',')) || ''}</td>
+                    <td>{(m && m[1])?.substring(0, m[1].indexOf(',')) || ''}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
+      </main>
 
-      <div className="nav-controls">
-        <button onClick={previousCard} className="nav-button"><ChevronLeft size={20} /></button>
-        <div className="card-counter">{String(currentCard + 1).padStart(2, '0')}</div>
-        <button onClick={nextCard} className="nav-button"><ChevronRight size={20} /></button>
-      </div>
-
-      <div className="dots-indicator">
+      <nav className="pagination">
         {cards.map((_, index) => (
           <button
             key={index}
             onClick={() => goToCard(index)}
             className={`dot ${index === currentCard ? 'active' : ''}`}
+            aria-label={`Go to card ${index + 1}`}
           />
         ))}
-      </div>
-    </div>
+      </nav>
+    </>
   );
 }
 
