@@ -1,13 +1,13 @@
-body{
-  padding: 3%;
-  background: rgba(0, 0, 0, 0.2);
+* {
+  box-sizing: border-box;
 }
-/* General Body Styling */
+
 body {
   background-color: #f0f2f5;
   color: #333;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
+  padding: 1rem; /* Changed from 3% for predictability */
 }
 
 /* Navigation Bar */

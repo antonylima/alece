@@ -71,35 +71,37 @@ function Admin() {
     <div className="admin-container">
       <h1>Painel Administrativo</h1>
       <button onClick={fetchData} className="refresh-btn">Atualizar Lista</button>
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th>Deputado</th>
-            <th>Partido</th>
-            <th>Mesa</th>
-            <th>Status</th>
-            <th>Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-          {deputados.map((dep) => (
-            <tr key={dep.id} className={dep.licenciado ? 'licenciado' : ''}>
-              <td>{dep.deputado}</td>
-              <td>{dep.sigla}</td>
-              <td>{dep.mesa}</td>
-              <td>{dep.licenciado ? 'Licenciado' : 'Ativo'}</td>
-              <td>
-                <button
-                  onClick={() => handleToggleLicenciado(dep.id, dep.licenciado)}
-                  className="toggle-btn"
-                >
-                  {dep.licenciado ? 'Tornar Ativo' : 'Tornar Licenciado'}
-                </button>
-              </td>
+      <div className="table-wrapper">
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Deputado</th>
+              <th>Partido</th>
+              <th>Mesa</th>
+              <th>Status</th>
+              <th>Ação</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {deputados.map((dep) => (
+              <tr key={dep.id} className={dep.licenciado ? 'licenciado' : ''}>
+                <td>{dep.deputado}</td>
+                <td>{dep.sigla}</td>
+                <td>{dep.mesa}</td>
+                <td>{dep.licenciado ? 'Licenciado' : 'Ativo'}</td>
+                <td>
+                  <button
+                    onClick={() => handleToggleLicenciado(dep.id, dep.licenciado)}
+                    className="toggle-btn"
+                  >
+                    {dep.licenciado ? 'Tornar Ativo' : 'Tornar Licenciado'}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
