@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { getDeputados } from './Api';
+import { supabase } from './util/supabase';
 import Admin from './pages/Admin';
 import PrivateRoute from './auth/PrivateRoute';
 import Comissoes from './pages/Comissoes.js';
@@ -14,7 +14,12 @@ function DeputadosList() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getDeputados();
+        const { data, error } = await supabase.from('ctp').select('*');
+
+        if (error) {
+          throw error;
+        }
+
         const sortedData = data.sort((a, b) => {
           const hasMesaA = a.mesa != null;
           const hasMesaB = b.mesa != null;
