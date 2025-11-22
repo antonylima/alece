@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './Comissoes.css'; // Import the new CSS file
+import {supabase }  from '../util/supabase';
 
 /**
  * @typedef {object} Card
@@ -11,7 +12,8 @@ import './Comissoes.css'; // Import the new CSS file
  * @property {string[][]} membro
  */
 
-// Custom hook to detect screen orientation
+
+
 const useScreenOrientation = () => {
   const [isPortrait, setIsPortrait] = useState(
     window.matchMedia('(orientation: portrait)').matches
@@ -32,12 +34,43 @@ const useScreenOrientation = () => {
 };
 
 
+
+
 function Comissoes() {
   const [currentCard, setCurrentCard] = useState(0);
   const [touchStartX, setTouchStartX] = useState(null);
   const [touchEndX, setTouchEndX] = useState(null);
   const [swipeProgress, setSwipeProgress] = useState(0);
   const isPortrait = useScreenOrientation(); // Use the orientation hook
+  const [ctpData, setCtpData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+ const fetchCtpData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const { data, error } = await supabase
+        .from('ctp')
+        .select('*')
+        .order('id', { ascending: true });
+
+      if (error) throw error;
+      
+      setCtpData(data || []);
+    } catch (err) {
+      console.error('Erro ao buscar dados:', err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Buscar dados ao montar o componente
+  useEffect(() => {
+    fetchCtpData();
+  }, []);
 
   /** @type {Card[]} */
   const cards = Array.from({ length: 21 }, (_, i) => {
@@ -64,12 +97,12 @@ function Comissoes() {
       ['Salmito, PSB', 'Marcos Sobreira, PSB'], ['Emilia Pessoa, PSDB', 'Luana Régia, Cidadania'],
       ['Fernando Hugo, PSD', 'Simão Pedro, PSD'], ['Juliana Lucena, PT', 'Missias Dias, PT'],
       ['Leonardo Pinheiro, Progressistas', 'Júlio César Filho, PT'], ['Stuart Castro, Avante', 'Missias Dias, PT'],
-      ['Renato Roseno, Psol', 'Nizo Costa, PT'], ['Marcos Sobreira, PSB', 'Guilherme Landin, PSB'],
+      ['Renato Roseno, Psol', 'Nizo Costa, PT'], ['Marcos Sobreira, PSB', 'Guilherme Landim, PSB'],
       ['Agenor Neto, MDB', 'Davi de Raimundão, MDB'], ['Firmo Camurça, União', 'Heitor Férrer, União'],
       ['Luana Régia, Cidadania', 'Emilia Pessoa, PSDB'], ['Antônio Henrique, PDT', 'Lucinildo Frota, PDT'],
       ['Bruno Pedrosa, PT', 'Missias Dias, PT'], ['Sérgio Aguiar, PSB', 'Guilherme Landim, PSB'],
       ['Alysson Aguiar, PCdoB', 'Missias Dias, PT'], ['Guilherme Landim, PSB', 'Marcos Sobreira, PSB'],
-      ['Júlio César Filho, PT', 'Nizo Costa, PT'], ['Marta Gonçalves, PL', 'Luana Régia, Cidadania'],
+      ['Júlio César Filho, PT', 'Nizo Costa, PT'], ['Marta Gonçalves, PSB', 'Luana Régia, Cidadania'],
       ['Lucinildo Frota, PDT', 'Queiroz Filho, PDT']
     ];
 
@@ -90,7 +123,7 @@ function Comissoes() {
     const membros = [
         [['Simão Pedro, PSD', 'Lucílvio Girão, PSD'],['Salmito, PSB', 'Guilherme Bismarck, PSB'],['Queiroz Filho, PDT', 'Antônio Henrique, PDT'],['x,x', 'x,x'],['x,x', 'x,x'],['x,x', 'x,x'],['x,x', 'x,x']],
         [['Guilherme Sampaio, PT', 'Jô Farias, PT'],['Agenor Neto, MDB', 'Davi de Raimundão, MDB'],['Alysson Aguiar, PCdoB', 'Missias Dias, PT'],['x,x', 'x,x'],['x,x', 'x,x'],['x,x', 'x,x'],['x_x', 'x,x']],
-        [['Guilherme Sampaio, PT', 'Jô Farias, PT'],['Júlio César Filho, PT', 'Nizo Costa, PT'],['Antonio Granja, PSB', 'Guilherme Landim, PSB'],['Sargento Reginauro, União', 'Heitor-Férrer, União'],['Queiroz Filho, PDT', 'Antônio Henrique, PDT'],['Agenor Neto, MDB', 'Davi de Raimundão, MDB'],['Carmelo Neto, PL', 'Dra. Silvana, PL']],
+        [['Guilherme Sampaio, PT', 'Jô Farias, PT'],['Júlio César Filho, PT', 'Nizo Costa, PT'],['Antonio Granja, PSB', 'Guilherme Landim, PSB'],['Sargento Reginauro, União', 'Heitor Férrer, União'],['Queiroz Filho, PDT', 'Antônio Henrique, PDT'],['Agenor Neto, MDB', 'Davi de Raimundão, MDB'],['Carmelo Bolsonaro, PL', 'Dra. Silvana, PL']],
         [['Almir Bié, Progressistas', 'Leonardo Pinheiro, Progressistas'],['Guilherme Sampaio, PT', 'Nizo Costa, PT'],['Guilherme Bismarck, PSB', 'Marcos Sobreira, PSB'],['x,x', 'x,x'],['x,x', 'x,x'],['x,x', 'x,x'],['x,x', 'x,x']],
         [['Jô Farias, PT', 'Missias Dias, PT'],['Nizo Costa, PT', 'Júlio César Filho, PT'],['Marcos Sobreira, PSB', 'Guilherme Bismarck, PSB'],['Alysson Aguiar, PCdoB', 'Guilherme Sampaio, PT'],['Lucinildo Frota, PDT', 'Queiroz Filho, PDT'],['x,x', 'x,x'],['x,x', 'x,x']],
         [['Emilia Pessoa, PSDB', 'Marcos Sobreira, PSB'],['Marta Gonçalves, PSB', 'Guilherme Bismarck, PSB'],['Luana Régia, Cidadania', 'Salmito, PSB'],['x,x', 'x,x'],['x,x', 'x,x'],['x,x', 'x,x'],['x,x', 'x,x']],
@@ -121,6 +154,13 @@ function Comissoes() {
     document.querySelectorAll('*').forEach((el) => {
       if (el.textContent === 'x' || el.innerHTML === 'x') {
         el.classList.add('branco');
+      }
+      else{
+        ctpData.map(item => {
+          if ((el.textContent === item.deputado || el.innerHTML === item.deputado) && item.licenciado) {
+            el.classList.add("licenciado");
+          }
+        });
       }
     });
   });
