@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { getDeputados } from './Api';
+import { supabase } from './util/supabase';
 import Admin from './pages/Admin';
 import PrivateRoute from './auth/PrivateRoute';
 import Comissoes from './pages/Comissoes.js';
@@ -14,7 +13,16 @@ function DeputadosList() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getDeputados();
+        // Busca dados diretamente do Supabase
+        const { data, error } = await supabase
+          .from('ctp')
+          .select('*');
+
+        if (error) {
+          throw error;
+        }
+
+        // Ordena os dados da mesma forma que antes
         const sortedData = data.sort((a, b) => {
           const hasMesaA = a.mesa != null;
           const hasMesaB = b.mesa != null;
@@ -34,6 +42,7 @@ function DeputadosList() {
           // For deputies with the same 'mesa' status, sort by name
           return a.deputado.localeCompare(b.deputado);
         });
+        
         setTodos(sortedData);
       } catch (error) {
         console.error('Failed to fetch data:', error);
@@ -42,34 +51,36 @@ function DeputadosList() {
 
     fetchData();
   }, []);
+  
   const sp = "";
+  
   return (
     <div className="deputados-container">
       <h2 className="list-title">Deputados</h2>
       <ul className="deputados-list">
         {todos.map((todo) => (
           <li
-  key={todo.id}
-  className={`deputado-item ${
-    todo.licenciado ? 'licenciado-item' : ''
-  }`}
->
-  <div className="deputado-row-1">
-    <a
-      href={todo.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="deputado-link"
-    >
-      {todo.deputado}
-    </a>
-    <span>&nbsp;&nbsp;</span>
-    <span className="deputado-sigla">{sp}{todo.sigla}</span>
-  </div>
-  <div className="deputado-row-2">
-    {todo.role && <span className="role">{todo.role}</span>}
-  </div>
-</li>
+            key={todo.id}
+            className={`deputado-item ${
+              todo.licenciado ? 'licenciado-item' : ''
+            }`}
+          >
+            <div className="deputado-row-1">
+              <a
+                href={todo.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="deputado-link"
+              >
+                {todo.deputado}
+              </a>
+              <span>&nbsp;&nbsp;</span>
+              <span className="deputado-sigla">{sp}{todo.sigla}</span>
+            </div>
+            <div className="deputado-row-2">
+              {todo.role && <span className="role">{todo.role}</span>}
+            </div>
+          </li>
         ))}
       </ul>
     </div>
@@ -103,4 +114,3 @@ function App() {
 }
 
 export default App;
-
