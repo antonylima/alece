@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { supabase } from './util/supabase';
+import { getDeputados } from './Api';
 import Admin from './pages/Admin';
 import PrivateRoute from './auth/PrivateRoute';
 import Comissoes from './pages/Comissoes.js';
@@ -14,12 +14,7 @@ function DeputadosList() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data, error } = await supabase.from('ctp').select('*');
-
-        if (error) {
-          throw error;
-        }
-
+        const data = await getDeputados();
         const sortedData = data.sort((a, b) => {
           const hasMesaA = a.mesa != null;
           const hasMesaB = b.mesa != null;
@@ -47,31 +42,34 @@ function DeputadosList() {
 
     fetchData();
   }, []);
-
+  const sp = "";
   return (
     <div className="deputados-container">
       <h2 className="list-title">Deputados</h2>
       <ul className="deputados-list">
         {todos.map((todo) => (
           <li
-            key={todo.id}
-            className={`deputado-item ${
-              todo.licenciado ? 'licenciado-item' : ''
-            }`}
-          >
-            <a
-              href={todo.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="deputado-link"
-            >
-              {todo.deputado}
-            </a>
-            <div className="deputado-details">
-              <span className="deputado-sigla">{todo.sigla}</span>
-              {todo.role && <span className="role">{todo.role}</span>}
-            </div>
-          </li>
+  key={todo.id}
+  className={`deputado-item ${
+    todo.licenciado ? 'licenciado-item' : ''
+  }`}
+>
+  <div className="deputado-row-1">
+    <a
+      href={todo.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="deputado-link"
+    >
+      {todo.deputado}
+    </a>
+    <span>&nbsp;&nbsp;</span>
+    <span className="deputado-sigla">{sp}{todo.sigla}</span>
+  </div>
+  <div className="deputado-row-2">
+    {todo.role && <span className="role">{todo.role}</span>}
+  </div>
+</li>
         ))}
       </ul>
     </div>

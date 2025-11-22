@@ -98,13 +98,15 @@ main {
   font-size: 0.9rem;
 }
 
+
 .deputado-sigla {
   background-color: #e9ecef;
-  padding: 0.25rem 0.5rem;
   border-radius: 4px;
   color: #495057;
   font-weight: 500;
+  padding: 0 0.5rem;
 }
+
 
 .role {
   font-style: italic;
@@ -124,11 +126,9 @@ li{
   padding:0.3%;
 }
 a:visited{
-color: black
+color: #007bff;
 }
-a:hover{
-  background-color: green
-}
+
 a{
   color: black;
   text-decoration: none;
@@ -137,4 +137,21 @@ a{
 
 .branco{
   visibility: hidden;
+}
+
+
+.deputado-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.deputado-row-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deputado-row-2 {
+  display: flex;
 }
