@@ -14,6 +14,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
+.card-table .dep{
+    text-align: left;
+    padding-left: 1rem;
+  }
+
+
 #root {
   min-height: 100vh;
   display: flex;
@@ -97,8 +103,7 @@ body {
 .card-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
-  color: #af2b2b;
+  font-size: 1em;
 }
 
 .card-table thead {
@@ -110,9 +115,9 @@ body {
   padding: 1rem 1.25rem;
   text-align: center;
   font-weight: 600;
-  color: #0f5132;
+  color: #00ad71;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 1rem;
   letter-spacing: 0.5px;
 }
 
@@ -129,7 +134,7 @@ body {
   padding: 1rem 1.25rem;
   text-align: center;
   color: #374151;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 /* Section title rows (Presidente, Vice-Presidente, Membros) */
@@ -137,7 +142,7 @@ body {
   background: linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%) !important;
   font-weight: 700;
   color: #0f5132 !important;
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   padding: 1.2rem 1.25rem !important;
@@ -209,22 +214,21 @@ body {
   }
 
   .card-header {
-    padding: 0.75rem 1rem;
+    padding: 0.50rem 0.50rem;
   }
 
   .col-label {
-    padding: 0.75rem 0.75rem;
-    font-size: 0.75rem;
+    padding: 0.50rem 0.50rem;
+    font-size: 1rem;
   }
 
   .card-table td {
-    padding: 0.75rem 0.75rem;
-    font-size: 0.85rem;
+    padding: 0.50rem 0.50rem;
+    font-size: 1rem;
   }
 
   .section-title {
-    padding: 1rem 0.75rem !important;
-    font-size: 0.8rem;
+    padding: 0.50rem 0.50rem !important;
   }
 
   .pagination {
@@ -258,12 +262,12 @@ body {
 
   .col-label {
     padding: 1.25rem 1.5rem;
-    font-size: 0.85rem;
+    font-size: 1.5rem;
   }
 
   .card-table td {
     padding: 1.25rem 1.5rem;
-    font-size: 1rem;
+    font-size: 2rem;
   }
 
   .dot {
@@ -281,24 +285,23 @@ body {
   .card {
     max-width: 900px;
   }
-
   .card-header {
     padding: 1.5rem 2rem;
   }
 
   .col-label {
-    padding: 1.5rem 2rem;
-    font-size: 0.9rem;
+    padding: 1rem 1rem;
+    font-size: 2rem;
   }
 
   .card-table td {
-    padding: 1.5rem 2rem;
-    font-size: 1.05rem;
+    padding: 1rem 1rem;
+    font-size: 2rem;
   }
 
   .section-title {
-    padding: 1.5rem 2rem !important;
-    font-size: 1rem;
+    padding: 1rem 1rem !important;
+    font-size: 2rem;
   }
 }
 
@@ -322,7 +325,7 @@ body {
   }
 
   .page-header h1 {
-    font-size: 0.85rem;
+    font-size: 1rem;
     letter-spacing: -0.3px;
   }
 
@@ -355,7 +358,7 @@ body {
   }
 
   .card-title {
-    font-size: 0.85rem;
+    font-size: 1rem;
     line-height: 1.2;
   }
 
@@ -396,19 +399,19 @@ body {
 
   .col-label,
   .card-table td {
-    padding: 0.3rem 0.4rem;
-    font-size: 0.65rem;
-    line-height: 1.2;
+    padding: 0.3rem 0.3rem;
+    font-size: 1rem;
+    line-height: 1;
   }
 
   .col-label {
-    font-size: 0.6rem;
-    padding: 0.25rem 0.4rem;
+    font-size: 1rem;
+    padding: 0.3rem 0.3rem;
   }
 
   .section-title {
-    padding: 0.4rem 0.4rem !important;
-    font-size: 0.6rem;
+    padding: 0.3rem 0.3rem !important;
+    font-size: 1rem;
     background: linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%) !important;
   }
 
@@ -463,7 +466,7 @@ body {
   }
 
   .page-header h1 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .card-container {
@@ -529,7 +532,7 @@ body {
   .card-table td {
     padding: 0.5rem 0.7rem;
     font-size: 0.75rem;
-    line-height: 1.3;
+    line-height: 1;
   }
 
   .section-title {
@@ -572,6 +575,23 @@ body {
   .card-table tbody::-webkit-scrollbar {
     display: none;
   }
+
+
+}
+
+@media (orientation: landscape) and (min-width: 920px) {
+  .card-table td{
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+  .card-table .col-label{
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+  .card-table .section-title {
+    font-size: 1rem;
+    padding: 0.4rem;
+}
 }
 
 /* === ACCESSIBILITY === */

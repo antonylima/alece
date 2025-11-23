@@ -242,19 +242,19 @@ function Comissoes() {
               <tbody>
                 <tr><td colSpan={2} className='section-title'>Presidente</td></tr>
                 <tr>
-                  <td>{(currentCardData.presidente && currentCardData.presidente[0])?.substring(0, currentCardData.presidente[0].indexOf(',')) || ''}</td>
-                  <td>{(currentCardData.presidente && currentCardData.presidente[1])?.substring(0, currentCardData.presidente[1].indexOf(',')) || ''}</td>
+                  <td className='dep'>{(currentCardData.presidente && currentCardData.presidente[0])?.substring(0, currentCardData.presidente[0].indexOf(',')) || ''}</td>
+                  <td className='dep'>{(currentCardData.presidente && currentCardData.presidente[1])?.substring(0, currentCardData.presidente[1].indexOf(',')) || ''}</td>
                 </tr>
                 <tr><td colSpan={2} className='section-title'>Vice-Presidente</td></tr>
                 <tr>
-                  <td>{(currentCardData.vice_presidente && currentCardData.vice_presidente[0])?.substring(0, currentCardData.vice_presidente[0].indexOf(',')) || ''}</td>
-                  <td>{(currentCardData.vice_presidente && currentCardData.vice_presidente[1])?.substring(0, currentCardData.vice_presidente[1].indexOf(',')) || ''}</td>
+                  <td className='dep'>{(currentCardData.vice_presidente && currentCardData.vice_presidente[0])?.substring(0, currentCardData.vice_presidente[0].indexOf(',')) || ''}</td>
+                  <td className='dep'>{(currentCardData.vice_presidente && currentCardData.vice_presidente[1])?.substring(0, currentCardData.vice_presidente[1].indexOf(',')) || ''}</td>
                 </tr>
                 <tr><td colSpan={2} className='section-title'>Membros</td></tr>
                 {currentCardData.membro.map((m, index) => (
                   <tr key={index}>
-                    <td>{(m && m[0])?.substring(0, m[0].indexOf(',')) || ''}</td>
-                    <td>{(m && m[1])?.substring(0, m[1].indexOf(',')) || ''}</td>
+                    <td className='dep'>{(m && m[0])?.substring(0, m[0].indexOf(',')) || ''}</td>
+                    <td className='dep'>{(m && m[1])?.substring(0, m[1].indexOf(',')) || ''}</td>
                   </tr>
                 ))}
               </tbody>
