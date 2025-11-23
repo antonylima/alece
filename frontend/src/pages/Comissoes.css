@@ -88,6 +88,7 @@ body {
   background: linear-gradient(135deg, #0f5132 0%, #1b7d5a 100%);
   padding: 1rem 1.5rem;
   border-bottom: 3px solid #22d3ee;
+  user-select: none;
 }
 
 .card-title {

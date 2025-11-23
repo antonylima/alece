@@ -8,6 +8,7 @@ import {supabase }  from '../util/supabase';
  * @property {number} id
  * @property {string} sigla
  * @property {string} comissao
+ * @property {string} url
  * @property {string[]} presidente
  * @property {string[][]} membro
  */
@@ -92,6 +93,31 @@ function Comissoes() {
       'Trabalho, Administração e Serviço Público', 'Turismo e Serviços', 'Viação, Transporte, Desenvolvimento Urbano'
     ];
 
+    const urls = [
+  "https://www.al.ce.gov.br/paginas/composicao-agropecuaria",
+  "https://www.al.ce.gov.br/paginas/composicao-ciencia-tecnologia-e-educacao-superior",
+  "https://www.al.ce.gov.br/paginas/composicao-constituicao-justica-e-redacao",
+  "https://www.al.ce.gov.br/paginas/composicao-cultura-e-esportes",
+  "https://www.al.ce.gov.br/paginas/composicao-defesa-do-consumidor",
+  "https://www.al.ce.gov.br/paginas/228-composicao-defesa-e-direitos-da-mulher",
+  "https://www.al.ce.gov.br/paginas/composicao-defesa-social",
+  "https://www.al.ce.gov.br/paginas/composicao-desenvolvimento-regional-recursos-hidricos-minas-e-pesca",
+  "https://www.al.ce.gov.br/paginas/composicao-direitos-humanos-e-cidadania",
+  "https://www.al.ce.gov.br/paginas/composicao-comissao-de-educacao-basica",
+  "https://www.al.ce.gov.br/paginas/composicao-fiscalizacao-e-controle",
+  "https://www.al.ce.gov.br/paginas/composicao-industria-desenvolvimento-economico-e-comercio",
+  "https://www.al.ce.gov.br/paginas/composicao-da-infancia-e-adolescencia",
+  "https://www.al.ce.gov.br/paginas/composicao-juventude",
+  "https://www.al.ce.gov.br/paginas/composicao-meio-ambiente-e-desenvolvimento-do-semiarido",
+  "https://www.al.ce.gov.br/paginas/composicao-orcamento-financas-e-tributacao",
+  "https://www.al.ce.gov.br/paginas/composicao-previdencia-social-e-saude",
+  "https://www.al.ce.gov.br/paginas/composicao-protecao-social-e-combate-a-fome",
+  "https://www.al.ce.gov.br/paginas/composicao-trabalho-administracao-e-servico-publico",
+  "https://www.al.ce.gov.br/paginas/composicao-de-turismo-e-servicos",
+  "https://www.al.ce.gov.br/paginas/composicao-viacao-transporte-desenvolvimento-urbano"
+];
+
+
     const presidentes = [
       ['Missias Dias, PT', 'Bruno Pedrosa, PT'], ['Cláudio Pinho, PDT', 'Queiroz Filho, PDT'],
       ['Salmito, PSB', 'Marcos Sobreira, PSB'], ['Emilia Pessoa, PSDB', 'Luana Régia, Cidadania'],
@@ -145,7 +171,7 @@ function Comissoes() {
     ];
 
     return {
-      id: cardNumber, sigla: siglas[i], comissao: comissoes[i], presidente: presidentes[i],
+      id: cardNumber, sigla: siglas[i], comissao: comissoes[i],url: urls[i] ,presidente: presidentes[i],
       vice_presidente: vice_presidentes[i], membro: membros[i]
     };
   });
@@ -228,9 +254,11 @@ function Comissoes() {
             }}
           >
             <div className="card-header">
-              <h2 className="card-title">
+              <a href={currentCardData.url} target="_blank">
+                <h2 className="card-title">
                 {isPortrait ? currentCardData.sigla : currentCardData.comissao}
               </h2>
+              </a>
             </div>
             <table className="card-table">
               <thead>
