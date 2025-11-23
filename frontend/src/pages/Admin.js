@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getDeputados, updateLicenciadoStatus } from '../Api';
+import { supabase } from '../util/supabase';
 import './Admin.css';
 
 function Admin() {
@@ -10,7 +10,12 @@ function Admin() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const data = await getDeputados();
+      const { data, error } = await supabase.from('ctp').select('*');
+
+      if (error) {
+        throw error;
+      }
+
       const sortedData = data.sort((a, b) => {
         const hasMesaA = a.mesa != null;
         const hasMesaB = b.mesa != null;
@@ -46,13 +51,25 @@ function Admin() {
 
   const handleToggleLicenciado = async (id, currentStatus) => {
     try {
-      const updatedRecord = await updateLicenciadoStatus(id, !currentStatus);
+      const { data: updatedRecord, error } = await supabase
+        .from('ctp')
+        .update({ licenciado: !currentStatus })
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
       // Update the state locally to reflect the change immediately
-      setDeputados((prevDeputados) =>
-        prevDeputados.map((dep) =>
-          dep.id === id ? { ...dep, licenciado: updatedRecord.licenciado } : dep
-        )
-      );
+      if (updatedRecord) {
+        setDeputados((prevDeputados) =>
+          prevDeputados.map((dep) =>
+            dep.id === id ? { ...dep, licenciado: updatedRecord.licenciado } : dep
+          )
+        );
+      }
     } catch (err) {
       setError(`Falha ao atualizar o status do ID ${id}.`);
       console.error(err);
