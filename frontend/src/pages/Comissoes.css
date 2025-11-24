@@ -616,3 +616,8 @@ body {
   color: transparent;
   user-select: none;
 }
+
+
+.licenciado {
+  color: #ff0000 !important;
+}
