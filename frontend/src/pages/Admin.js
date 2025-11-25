@@ -108,6 +108,8 @@ function Admin() {
       deputado: '',
       sigla: '',
       mesa: '',
+      link: '',
+      suplente: '', 
       licenciado: false
     });
   };
@@ -276,6 +278,16 @@ function Admin() {
                   value={formData.mesa}
                   onChange={(e) => setFormData({ ...formData, mesa: e.target.value })}
                   placeholder="Deixe vazio se não pertence à mesa"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="sigla">Link</label>
+                <input
+                  type="text"
+                  id="sigla"
+                  value={formData.link}
+                  onChange={(e) => setFormData({ ...formData, link: e.target.value })}
                 />
               </div>
 
