@@ -95,6 +95,8 @@ function Admin() {
         deputado: '',
         sigla: '',
         mesa: '',
+        link: '',
+        suplente: '',
         licenciado: false
       });
     }
