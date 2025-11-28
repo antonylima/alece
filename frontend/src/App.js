@@ -6,7 +6,7 @@ import PrivateRoute from './auth/PrivateRoute';
 import Comissoes from './pages/Comissoes.js';
 import './App.css';
 
-async function atualizarCTC(supabase, id, valor) {
+async function atualizaStatus(supabase, id, valor) {
   const { data, error } = await supabase
     .from('ctp')
     .update({ licenciado: valor })
@@ -23,7 +23,7 @@ async function atualizarCTC(supabase, id, valor) {
 const hoje = new Date();
 
 if((hoje.getDate()+"-"+(hoje.getMonth()+1)+"-"+hoje.getFullYear()) == '31-12-2025') {
-    await atualizarCTC(supabase, 7, false);
+    await atualizarStatus(supabase, 7, false);
 }
 
 
