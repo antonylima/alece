@@ -6,6 +6,28 @@ import PrivateRoute from './auth/PrivateRoute';
 import Comissoes from './pages/Comissoes.js';
 import './App.css';
 
+async function atualizarCTC(supabase, id, valor) {
+  const { data, error } = await supabase
+    .from('ctp')
+    .update({ licenciado: valor })
+    .eq('id', id);
+  
+  if (error) {
+    console.error('Erro ao atualizar:', error);
+    return { sucesso: false, erro: error };
+  }
+  
+  return { sucesso: true, data };
+}
+
+const hoje = new Date();
+
+if((hoje.getDate()+"-"+(hoje.getMonth()+1)+"-"+hoje.getFullYear()) == '31-12-2025') {
+    await atualizarCTC(supabase, 7, false);
+}
+
+
+
 // Extracted component for the main list
 function DeputadosList() {
   const [todos, setTodos] = useState([]);
