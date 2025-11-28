@@ -23,7 +23,7 @@ async function atualizaStatus(supabase, id, valor) {
 const hoje = new Date();
 
 if((hoje.getDate()+"-"+(hoje.getMonth()+1)+"-"+hoje.getFullYear()) == '01-12-2025') {
-    await atualizarStatus(supabase, 7, false);
+    await atualizaStatus(supabase, 7, false);
 }
 
 
